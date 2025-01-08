@@ -15,19 +15,21 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
+import { GetUsersParamDto } from './dtos/get-users-params.dto';
+import { PatchUserDto } from './dtos/patch-user.dto';
 
 @Controller('users')
 export class UsersController {
-  @Get('/:id?/:optional?')
+  @Get('/:id?')
   public getUsers(
-    @Param('id', ParseIntPipe) id: number | undefined,
+    //@Param('id', ParseIntPipe) id: number | undefined,
+    @Param() getUsersParamDto: GetUsersParamDto,
     @Query('limit', new DefaultValuePipe(10)) limit: number,
     @Query('page', new DefaultValuePipe(1)) page: number,
     @Body() body: any,
   ) {
-    console.log(typeof id);
-    console.log(id);
-    //bivbi
+    console.log(typeof getUsersParamDto);
+    console.log(getUsersParamDto);
     console.log(limit);
     console.log(page);
     console.log(body);
@@ -43,5 +45,11 @@ export class UsersController {
     console.log(headers);
     console.log(ip);
     return 'you sent a post request';
+  }
+
+  @Patch()
+  public patchUser(@Body() patchUserDto: PatchUserDto) {
+    console.log(patchUserDto instanceof PatchUserDto);
+    return patchUserDto;
   }
 }
