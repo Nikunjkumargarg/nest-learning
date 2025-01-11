@@ -21,7 +21,7 @@ import { UsersService } from './providers/users.service';
 
 @Controller('users')
 export class UsersController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UsersService) {}
 
   @Get('/:id?')
   public getUsers(
@@ -31,12 +31,7 @@ export class UsersController {
     @Query('page', new DefaultValuePipe(1)) page: number,
     @Body() body: any,
   ) {
-    console.log(typeof getUsersParamDto);
-    console.log(getUsersParamDto);
-    console.log(limit);
-    console.log(page);
-    console.log(body);
-    return 'you sent a get request';
+    return this.userService.findall(getUsersParamDto, limit, page);
   }
   @Post()
   public createUsers(
