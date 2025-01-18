@@ -6,6 +6,7 @@ import { PostsModule } from './posts/posts.module';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+//remember to import crypto packages when using typeormmodule.forrootasync.
 import * as crypto from 'crypto';
 (global as any).crypto = crypto;
 
