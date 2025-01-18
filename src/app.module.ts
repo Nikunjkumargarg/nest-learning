@@ -12,6 +12,8 @@ import { Users } from './users/users.entity';
 import { Posts } from './posts/posts.entity';
 import { TagsModule } from './tags/tags.module';
 import { MetaOptionsModule } from './meta-options/meta-options.module';
+import { metaOptions } from './meta-options/meta-options.entity';
+import { Tags } from './tags/tags.entity';
 (global as any).crypto = crypto;
 
 const ENV = process.env.NODE_ENV;
@@ -20,12 +22,14 @@ const ENV = process.env.NODE_ENV;
     UsersModule,
     PostsModule,
     AuthModule,
+    MetaOptionsModule,
     TypeOrmModule.forRootAsync({
       imports: [],
       inject: [],
       useFactory: () => ({
         type: 'postgres',
-        entities: [Users, Posts],
+        //entities: [Users, Posts, metaOptions, Tags],
+        autoLoadEntities: true,
         synchronize: true,
         port: 5432,
         username: 'postgres',

@@ -106,12 +106,21 @@ export class createPostDto {
   tags?: string[];
 
   @IsOptional()
-  @IsArray()
   @ValidateNested({ each: true })
   @Type(() => CreatePostMetaOptionsDto)
   @ApiPropertyOptional({
-    type: 'array',
+    type: 'object',
     required: false,
+    items: {
+      type: 'object',
+      properties: {
+        metaValue: {
+          type: 'json',
+          description: 'The metaValue is a json string',
+          example: '{"sidebarEnabled": true}',
+        },
+      },
+    },
   })
-  metaOption: CreatePostMetaOptionsDto;
+  metaOption?: CreatePostMetaOptionsDto | null;
 }
