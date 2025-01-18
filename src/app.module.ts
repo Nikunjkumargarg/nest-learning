@@ -8,6 +8,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 //remember to import crypto packages when using typeormmodule.forrootasync.
 import * as crypto from 'crypto';
+import { Users } from './users/users.entity';
 (global as any).crypto = crypto;
 
 const ENV = process.env.NODE_ENV;
@@ -21,7 +22,7 @@ const ENV = process.env.NODE_ENV;
       inject: [],
       useFactory: () => ({
         type: 'postgres',
-        entities: [],
+        entities: [Users],
         synchronize: true,
         port: 5432,
         username: 'postgres',
