@@ -10,12 +10,13 @@ import {
   IsString,
   IsUrl,
   Matches,
+  MaxLength,
   MinLength,
   ValidateNested,
 } from 'class-validator';
 import { postStatus } from '../enums/postStatus.enum';
 import { postType } from '../enums/postType.enum';
-import { CreatePostMetaOptionsDto } from './create-post-meta-options.dto';
+import { CreatePostMetaOptionsDto } from '../../meta-options/dtos/create-post-meta-options.dto';
 import { Type } from 'class-transformer';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { PostsController } from '../posts.controller';
@@ -24,6 +25,7 @@ export class createPostDto {
   @IsString()
   @MinLength(4)
   @IsNotEmpty()
+  @MaxLength(512)
   @ApiProperty({
     description: 'This is the title for the blog post',
     example: 'Nikunj garg from jagadhri is a billionaire',
@@ -39,6 +41,7 @@ export class createPostDto {
   postType: postType;
 
   @IsString()
+  @MaxLength(256)
   @IsNotEmpty()
   @Matches(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, {
     message:
@@ -76,6 +79,7 @@ export class createPostDto {
   schema?: string;
 
   @IsUrl()
+  @MaxLength(1024)
   @IsOptional()
   @ApiPropertyOptional({
     description: 'Feature image for your blog post',
@@ -108,7 +112,6 @@ export class createPostDto {
   @ApiPropertyOptional({
     type: 'array',
     required: false,
-    
   })
   metaOption: CreatePostMetaOptionsDto;
 }
