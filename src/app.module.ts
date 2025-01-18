@@ -6,6 +6,8 @@ import { PostsModule } from './posts/posts.module';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import * as crypto from 'crypto';
+(global as any).crypto = crypto;
 
 const ENV = process.env.NODE_ENV;
 @Module({
@@ -13,15 +15,19 @@ const ENV = process.env.NODE_ENV;
     UsersModule,
     PostsModule,
     AuthModule,
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      entities: [],
-      synchronize: true,
-      port: 5432,
-      username: 'postgres',
-      password: 'Nikunj@gauri32',
-      host: 'localhost',
-      database: 'nestjs-db',
+    TypeOrmModule.forRootAsync({
+      imports: [],
+      inject: [],
+      useFactory: () => ({
+        type: 'postgres',
+        entities: [],
+        synchronize: true,
+        port: 5432,
+        username: 'postgres',
+        password: 'Nikunj@gauri32',
+        host: 'localhost',
+        database: 'nestjs-db',
+      }),
     }),
     ConfigModule.forRoot({
       isGlobal: true,
