@@ -63,7 +63,7 @@ export class Posts {
     nullable: true,
   })
   publishedOn?: Date;
-  tags?: string;
+  tags?: string[];
 
   @OneToOne(() => metaOptions)
   @JoinColumn()

@@ -19,9 +19,8 @@ import { postType } from '../enums/postType.enum';
 import { CreatePostMetaOptionsDto } from '../../meta-options/dtos/create-post-meta-options.dto';
 import { Type } from 'class-transformer';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { PostsController } from '../posts.controller';
 
-export class createPostDto {
+export class CreatePostDto {
   @IsString()
   @MinLength(4)
   @IsNotEmpty()
@@ -85,7 +84,7 @@ export class createPostDto {
     description: 'Feature image for your blog post',
     example: 'http://localhost.com/images/image1.jpg',
   })
-  featuredImage?: string;
+  featuredImageUrl?: string;
 
   @IsISO8601()
   @IsOptional()
@@ -122,5 +121,5 @@ export class createPostDto {
       },
     },
   })
-  metaOption?: CreatePostMetaOptionsDto | null;
+  metaOptions?: CreatePostMetaOptionsDto | null;
 }
