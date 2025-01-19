@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { DataResponseInterceptor } from './common/interceptors/data-response/data-response.interceptor';
 
 // @UsePipes(new ValidationPipe({ transform: true }))
 //   createUser(@Body() createUserDto: CreateUserDto) {
@@ -30,7 +31,7 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
-
+  app.useGlobalInterceptors(new DataResponseInterceptor());
   await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();
