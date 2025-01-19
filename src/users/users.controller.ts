@@ -13,6 +13,8 @@ import {
   ParseIntPipe,
   DefaultValuePipe,
   ValidationPipe,
+  UseInterceptors,
+  ClassSerializerInterceptor,
 } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { GetUsersParamDto } from './dtos/get-users-params.dto';
@@ -58,6 +60,7 @@ export class UsersController {
     return this.userService.findall(getUsersParamDto, limit, page);
   }
   @Post()
+  @UseInterceptors(ClassSerializerInterceptor)
   public createUsers(
     @Body() createUserDto: CreateUserDto,
     @Headers() headers: any,
