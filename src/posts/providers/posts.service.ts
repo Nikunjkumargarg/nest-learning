@@ -17,7 +17,7 @@ export class PostsService {
   ) {}
   public async findAll(userId: string) {
     const user = await this.usersService.findOneById(userId);
-    return await this.postRepository.find({ relations: { metaOptions: true } });
+    return await this.postRepository.find();
   }
   public async create(@Body() createPostDto: CreatePostDto) {
     // console.log(createPostDto);

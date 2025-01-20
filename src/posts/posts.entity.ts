@@ -65,7 +65,7 @@ export class Posts {
   publishedOn?: Date;
   tags?: string[];
 
-  @OneToOne(() => metaOptions, { cascade: true })
+  @OneToOne(() => metaOptions, { cascade: true, eager: true })
   @JoinColumn()
   metaOptions?: metaOptions;
 }
