@@ -2,13 +2,13 @@ POST http://localhost:3000/posts
 Content-Type: application/json
 
 {
-  "title": "Howededd to Useff TypeScript Effectively",
+  "title": "Howededdd to Useff TypeScript Effectively",
   "postType": "page",
-  "slug": "how-tdeoed-usde-typescrifpt-effectively",
+  "slug": "how-tdeoed-dusde-typescrifpt-effectively",
   "status": "published",
-  "content": "This idsdeed thef content of the post. It provides detailed information about TypeScript usage.",
+  "content": "This iddsdeed thef content of the post. It provides detailed information about TypeScript usage.",
   "schema": "{\"key\":\"valdeueddff\"}",
-  "featuredImageUrl": "https://exafemple.com/featurfed-image.jpg",
+  "featuredImageUrl": "https://exafempdle.com/featurfed-image.jpg",
   "publishedOn": "2024-01-01T12:00:00Z",
   "metaOptions":{
     "metaValue": "{\r\n \"sidebarEnabled\": true, \"footActive\": true}"
