@@ -15,12 +15,9 @@ export class PostsService {
     @InjectRepository(Posts)
     private readonly postRepository: Repository<Posts>,
   ) {}
-  public findAll(userId: string) {
-    const user = this.usersService.findOneById(userId);
-    return [
-      { user: user, title: 'Test tile', content: 'Test Content' },
-      { user: user, title: 'Test tile 2', content: 'Test Content 2' },
-    ];
+  public async findAll(userId: string) {
+    const user = await this.usersService.findOneById(userId);
+    return await this.postRepository.find({ relations: { metaOptions: true } });
   }
   public async create(@Body() createPostDto: CreatePostDto) {
     // console.log(createPostDto);
