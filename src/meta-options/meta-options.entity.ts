@@ -6,6 +6,7 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
+  JoinColumn,
 } from 'typeorm';
 
 @Entity()
@@ -22,6 +23,7 @@ export class metaOptions {
   @UpdateDateColumn()
   updateDate: Date;
 
-  @OneToOne(() => Posts, (post) => post.metaOptions)
+  @OneToOne(() => Posts, (post) => post.metaOptions, { onDelete: 'CASCADE' })
+  @JoinColumn()
   post: Posts;
 }

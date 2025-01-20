@@ -69,6 +69,5 @@ export class Posts {
     cascade: true,
     eager: true,
   })
-  @JoinColumn()
   metaOptions?: metaOptions;
 }
