@@ -23,20 +23,20 @@ export class PostsService {
     ];
   }
   public async create(@Body() createPostDto: CreatePostDto) {
-    console.log(createPostDto);
-    let metaOptions = createPostDto.metaOptions
-      ? this.metaOptionsRepository.create(createPostDto.metaOptions)
-      : undefined;
+    // console.log(createPostDto);
+    // let metaOptions = createPostDto.metaOptions
+    //   ? this.metaOptionsRepository.create(createPostDto.metaOptions)
+    //   : undefined;
 
-    if (metaOptions) {
-      await this.metaOptionsRepository.save(metaOptions);
-    }
+    // if (metaOptions) {
+    //   await this.metaOptionsRepository.save(metaOptions);
+    // }
 
     let post = this.postRepository.create(createPostDto);
 
-    if (metaOptions) {
-      post.metaOptions = metaOptions;
-    }
+    // if (metaOptions) {
+    //   post.metaOptions = metaOptions;
+    // }
 
     return await this.postRepository.save(post);
   }
