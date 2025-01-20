@@ -19,7 +19,7 @@ export class PostsService {
     const user = await this.usersService.findOneById(userId);
     return await this.postRepository.find();
   }
-  public async create(@Body() createPostDto: CreatePostDto) {
+  public async create(createPostDto: CreatePostDto) {
     // console.log(createPostDto);
     // let metaOptions = createPostDto.metaOptions
     //   ? this.metaOptionsRepository.create(createPostDto.metaOptions)
@@ -37,4 +37,5 @@ export class PostsService {
 
     return await this.postRepository.save(post);
   }
+  public async delete(id: number) {}
 }
